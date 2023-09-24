@@ -1,0 +1,27 @@
+<robot name="cartographer_f110">
+    <material name="orange">
+    <color rgba="1.0 0.5 0.2 1" />
+    </material>
+    
+    <material name="gray">
+    <color rgba="0.2 0.2 0.2 1" />
+    </material>
+
+    <!--link name="laser">
+    <visual>
+    <origin xyz="0 0 0"/>
+    <geometry>
+        <cyliner length="0.07" radius="0.05" />
+    </geometry>
+    </visual>
+    </link-->
+
+    <link name="base_link" />
+
+    <joint name="laser_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="imu_link" />
+        <origin xyz="0 0 0" rpy = "0 0 0"/>
+    </joint>
+
+</robot>

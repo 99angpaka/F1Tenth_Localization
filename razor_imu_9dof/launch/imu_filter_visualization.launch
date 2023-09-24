@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="model" default="$(find razor_imu_9dof)/urdf/#my urdf.xacro"/>
+  <arg name="gui" default="true" />
+  
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+  </node> -->
+  
+  <node name="imu_node" pkg="razor_imu_9dof" type="imu_node.py" >
+  </node>
+  
+  <!-- IMU Complimentary Filter 실행시켜주는 코드 : 내가 직접 설치해야 할 것 같음 -->
+  <node name="imu_filter_node" pkg="imu_complementary_filter" type="complementary_filter_node" >
+  </node>
+  
+  <node name="rpy_tf" pkg="razor_imu_9dof" type="imu_tf_broadcaster.py" >
+  </node>
+  
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find razor_imu_9dof)/config/rviz_config.rviz"/> 
+</launch>
